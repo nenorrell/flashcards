@@ -1,0 +1,56 @@
+/*
+    ********** Structure ***********
+    
+    You probably don't want to change this stuff, but you definitely can!
+*/
+#game-contain{
+    width: 100vw;
+    height: 100vh;
+    min-height: 350px;
+}
+#game{
+    display: none;
+}
+#game-over{
+    display: none;
+}
+
+.score-contain{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#current-score-contain{
+    display: none;
+}
+
+#refresh{
+    z-index: 100;
+}
+
+.container-center{
+    position: relative;
+}
+.sub-container-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.fraction, .top, .bottom {
+    padding: 0 5px;    
+}
+
+.fraction {
+    display: inline-block;
+    text-align: center;    
+}
+
+.bottom{
+    border-top: 1px solid;
+    display: block;
+    margin: auto;
+    width: 10%;
+}

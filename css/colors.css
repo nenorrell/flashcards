@@ -1,0 +1,67 @@
+/* 
+    ********** Theme ***********
+    
+    Mix and match colors to customize your calculator!!
+
+    In order to change the color, change the hex code.
+    The hex code is the code that looks something like #ffffff;
+
+    Lookup color HEX codes at: https://color.adobe.com/create/color-wheel/
+
+
+    DEFAULT COLORS:
+
+        body{ 
+            background: #ffffff;
+        }
+        h1,h2,h3,h4{ 
+            color: #222222;
+        }
+        .right-answer{
+            color: #47944B;
+        }
+        .wrong-answer{
+            color: #EA4626;
+        }
+        .button-theme-1{
+            background: #71EB77;
+        }
+        .button-theme-2{
+            background: #ffb347;
+        }
+        .button-theme-3{
+            background: #EA4626;
+        }
+        .button-theme-4{
+            background: #00B8ED;
+        }
+*/
+
+body{ /* The main background color */
+    background: #ffffff;
+}
+h1,h2,h3,h4{ /* Text color */
+    color: #222222;
+}
+
+/* GAME OVER SCREEN */
+.right-answer{
+    color: #47944B;
+}
+.wrong-answer{
+    color: #EA4626;
+}
+
+/* BUTTON COLORS */
+.button-theme-1{
+    background: #71EB77;
+}
+.button-theme-2{
+    background: #ffb347;
+}
+.button-theme-3{
+    background: #EA4626;
+}
+.button-theme-4{
+    background: #00B8ED;
+}
