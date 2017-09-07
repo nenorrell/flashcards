@@ -38,13 +38,21 @@
 */
 
 body{ /* The main background color */
-    background: #ffffff;
+    background: black;
 }
-h1,h2,h3,h4{ /* Text color */
-    color: #222222;
+
+h1{
+    color: #CC9B08;
+}
+
+h2,h3,h4{ /* Text color */
+    color: white;
 }
 
 /* GAME OVER SCREEN */
+.game-over-text{
+    color: white;
+}
 .right-answer{
     color: #47944B;
 }
@@ -54,14 +62,14 @@ h1,h2,h3,h4{ /* Text color */
 
 /* BUTTON COLORS */
 .button-theme-1{
-    background: #71EB77;
+    background: #4A843A;
 }
 .button-theme-2{
-    background: #ffb347;
+    background: #CC9B08;
 }
 .button-theme-3{
-    background: #EA4626;
+    background: #DE4904;
 }
 .button-theme-4{
-    background: #00B8ED;
+    background: #6843A2;
 }

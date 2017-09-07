@@ -8,6 +8,7 @@ $(document).ready(function(){
     var answer;
     var currentScore = 0;
     var allTimeScore;
+    var musicSpeed = 1;
 
     //Check if alltime highscore exists
     if(localStorage.highScore === undefined){
@@ -20,6 +21,8 @@ $(document).ready(function(){
 
 
     $('#difficulty-selection button').click(function(){ //Choose equation type & load initial equation
+        $('#main-game-music').get(0).currentTime = 38;
+        
         equationType = $(this).val();
         
         let flashCard = fetchEquation(equationType);    
@@ -69,6 +72,9 @@ $(document).ready(function(){
                 $('.conf-cont').show();
             }
 
+            $('#main-game-music').get(0).pause();
+            $('#game-over-music').get(0).play();
+
             //Game over screen
             $('#current-score-contain').fadeOut();            
             $('#game').fadeOut();
@@ -78,6 +84,19 @@ $(document).ready(function(){
 
     $("#refresh").click(function(){
         location.reload();
+    });
+    
+    //SOUND CONTROLS
+    $("#mute").click(function(){
+        $("audio").prop('muted', true);
+        $(this).hide();
+        $('#unmute').show();
+    });
+
+    $("#unmute").click(function(){
+        $("audio").prop('muted', false);        
+        $(this).hide();
+        $('#mute').show();
     });
 });
 

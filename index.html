@@ -8,6 +8,7 @@
     <!-- CSS
     ---------------->
     <link rel="stylesheet" href="./css/foundation_5.css" />
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="./css/colors.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/confetti.css" />
@@ -42,12 +43,15 @@
 </head>
 <body>
 
+    <button id="mute" class='button button-theme-4'><i class="fa fa-volume-up" aria-hidden="true"></i></button>
+    <button id="unmute" class='button button-theme-4'><i class="fa fa-volume-off" aria-hidden="true"></i></button>
+
     <!-- Score sections -->
     <section id='current-score-contain' class='score-contain'>
-        <h4>Score: <span id='current-score'>0</span></h4>
+        <h4 class="eight-bit">Score: <span id='current-score'>0</span></h4>
     </section>
     <section id='all-time-score-contain' class='score-contain text-center'>
-        <h3>All time highscore: <span id='all-time-score'></span></h3>
+        <h3 class="eight-bit">All time highscore: <span id='all-time-score'></span></h3>
     </section>
 
     <!-- Main game container -->
@@ -91,7 +95,7 @@
                     <div class='row'>
                         <h1 id='equation'></h1>
                         <input class='text-center' type='text' id='answer' placeholder="Type answer here..." autocomplete="off"/>
-                        <button class='button medium-12 columns button-theme-4' id='submit'>Answer</button>
+                        <button class='button medium-12 columns button-theme-4 eight-bit' id='submit'>Answer</button>
                     </div>
                 </div>
             </div>
@@ -101,13 +105,13 @@
         <div class='row'>
             <div id='game-over' class='sub-container-center medium-6 columns text-center'>
                 <div class='row'>
-                    <h1>GAME OVER</h1>
+                    <h1 class='eight-bit game-over-text'>GAME OVER</h1>
                     <h4>Problem:<br><span id="end-equation" class="right-answer"></span></h4>
                     <h4>Your answer: <span id="end-answer" class="wrong-answer"></span></h4>
                     <h4>Right Answer: <span id="end-solution" class="right-answer"></span></h4>
                     
                     <h3><span id="final-score-title">Final score:</span> <span id='final-score'></span></h3>
-                    <button class='button medium-12 columns button-theme-4' id='refresh'>Play again</button>                
+                    <button class='button medium-12 columns button-theme-4 eight-bit' id='refresh'>Play again</button>                
                 </div>
             </div>
         </div>
@@ -138,6 +142,14 @@
         <div class="confetti"></div>
     </div>
     
+<audio id="main-game-music" autoplay muted>
+    <source src="./ost/8-bit.mp3" type="audio/mp3">
+</audio>
+
+<audio id="game-over-music" muted>
+    <source src="./ost/gameover.mp3" type="audio/mp3">
+</audio>
+
     <!-- JS
     ---------------->
     <script src="./js/jquery/2.1.0/jquery.min.js"></script>

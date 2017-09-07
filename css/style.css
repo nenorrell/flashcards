@@ -1,8 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+.eight-bit{
+    font-family: 'Press Start 2P', cursive;    
+}
+
+body *{
+    font-family: 'Press Start 2P', cursive;    
+}
+
 /*
     ********** Structure ***********
     
     You probably don't want to change this stuff, but you definitely can!
 */
+#mute{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+#unmute{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
 #game-contain{
     width: 100vw;
     height: 100vh;
