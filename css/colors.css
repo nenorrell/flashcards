@@ -11,11 +11,17 @@
 
     DEFAULT COLORS:
 
-        body{ 
-            background: #ffffff;
+        body{
+            background: black;
         }
-        h1,h2,h3,h4{ 
-            color: #222222;
+        h1{
+            color: #CC9B08;
+        }
+        h2,h3,h4{
+            color: white;
+        }
+        .game-over-text{
+            color: white;
         }
         .right-answer{
             color: #47944B;
@@ -24,16 +30,16 @@
             color: #EA4626;
         }
         .button-theme-1{
-            background: #71EB77;
+            background: #4A843A;
         }
         .button-theme-2{
-            background: #ffb347;
+            background: #CC9B08;
         }
         .button-theme-3{
-            background: #EA4626;
+            background: #DE4904;
         }
         .button-theme-4{
-            background: #00B8ED;
+            background: #6843A2;
         }
 */
 
@@ -41,10 +47,9 @@ body{ /* The main background color */
     background: black;
 }
 
-h1{
+h1{ /* Math problem color */
     color: #CC9B08;
 }
-
 h2,h3,h4{ /* Text color */
     color: white;
 }
