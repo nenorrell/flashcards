@@ -7,22 +7,12 @@ $(document).ready(function(){
     var equationType;
     var answer;
     var currentScore = 0;
-    var allTimeScore;
+    var allTimeScore = setAllTimeScore();
     var musicSpeed = 1;
 
-    //Check if alltime highscore exists
-    if(localStorage.highScore === undefined){
-        allTimeScore = 0;
-    }
-    else{
-        allTimeScore = atob(localStorage.highScore);
-    }
-    $('#all-time-score').html(allTimeScore);
+    freshGameState();
 
-
-    $('#difficulty-selection button').click(function(){ //Choose equation type & load initial equation
-        $('#main-game-music').get(0).currentTime = 38;
-        
+    $('#difficulty-selection button').click(function(){ //Choose equation type & load initial equation        
         equationType = $(this).val();
         
         let flashCard = fetchEquation(equationType);    
@@ -31,7 +21,7 @@ $(document).ready(function(){
         solution = flashCard.solution;
         
         //Display game
-        freshGameState();
+        playingState();
         $('#equation').html(equation);
     });
 
@@ -43,7 +33,8 @@ $(document).ready(function(){
 
     $("#submit").click(function(){ //Validate answer. If answer correct, load new equation. 
         answer = $('#answer').val();
-
+        $('#answer').val("");
+                
         if(answer == solution){
             //Update score
             currentScore += difficulty * 10;
@@ -56,7 +47,6 @@ $(document).ready(function(){
             
             //Update Display
             $('#current-score').html(currentScore);
-            $('#answer').val("");
             $('#equation').html(equation);
         }
 
@@ -72,18 +62,15 @@ $(document).ready(function(){
                 $('.conf-cont').show();
             }
 
-            $('#main-game-music').get(0).pause();
-            $('#game-over-music').get(0).play();
-
             //Game over screen
-            $('#current-score-contain').fadeOut();            
-            $('#game').fadeOut();
-            $('#game-over').fadeIn();
+            currentScore = 0;
+            gameOverState();
         }
     });
 
     $("#refresh").click(function(){
-        location.reload();
+        allTimeScore = setAllTimeScore();
+        freshGameState();
     });
     
     //SOUND CONTROLS
@@ -100,9 +87,46 @@ $(document).ready(function(){
     });
 });
 
-var freshGameState = function(){
+var playingState = function(){
+    $('#main-game-music').get(0).currentTime = 38;
+
     $('#all-time-score-contain').fadeOut();
     $('#current-score-contain').fadeIn();
     $('#difficulty-selection').fadeOut();
     $('#game').fadeIn();
+}
+var freshGameState = function(){
+    $('#all-time-score').html(allTimeScore);    
+
+    $('#game-over-music').get(0).pause();
+    $('#main-game-music').get(0).currentTime = 0;
+    $('#main-game-music').get(0).play();
+    
+    $('.conf-cont').hide();    
+    $('#all-time-score-contain').fadeIn();
+    $('#current-score-contain').fadeOut();
+    $('#difficulty-selection').fadeIn();
+    $('#game-over').fadeOut();    
+}
+
+var gameOverState = function(){
+    $('#main-game-music').get(0).pause();
+    $('#game-over-music').get(0).currentTime = 0;
+    $('#game-over-music').get(0).play();
+
+    $('#current-score-contain').fadeOut();            
+    $('#game').fadeOut();
+    $('#game-over').fadeIn();
+}
+
+var setAllTimeScore = function(){
+    //Check if alltime highscore exists
+    if(localStorage.highScore === undefined){
+        allTimeScore = 0;
+    }
+    else{
+        allTimeScore = atob(localStorage.highScore);
+    }
+
+    return allTimeScore;
 }
