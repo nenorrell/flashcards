@@ -7,40 +7,6 @@
     The hex code is the code that looks something like #ffffff;
 
     Lookup color HEX codes at: https://color.adobe.com/create/color-wheel/
-
-
-    DEFAULT COLORS:
-
-        body{
-            background: black;
-        }
-        h1{
-            color: #CC9B08;
-        }
-        h2,h3,h4{
-            color: white;
-        }
-        .game-over-text{
-            color: white;
-        }
-        .right-answer{
-            color: #47944B;
-        }
-        .wrong-answer{
-            color: #EA4626;
-        }
-        .button-theme-1{
-            background: #4A843A;
-        }
-        .button-theme-2{
-            background: #CC9B08;
-        }
-        .button-theme-3{
-            background: #DE4904;
-        }
-        .button-theme-4{
-            background: #6843A2;
-        }
 */
 
 body{ /* The main background color */
