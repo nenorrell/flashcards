@@ -44,8 +44,8 @@ var genAddSubProblem = function(){
 
 //Generate Multiplication problem
 var genMultProblem = function(){
-    let num1 = rand(1, 13);
-    let num2 = rand(1, 13);
+    let num1 = rand(1, 12);
+    let num2 = rand(1, 12);
     let tmp;
 
     return num1 + ' * ' + num2;
@@ -85,21 +85,16 @@ var genDivProblem = function(){
         localStorage.counter = 0;
     }
     else{
-        num1 = rand(1, 20);
-        num2 = rand(1, 20);
+        num1 = rand(1,12);
+        num2 = rand(1,12);
 
-        if(num1 < num2){
-            tmp = num1;
-            num1 = num2;
-            num2 = tmp;
-        }
+        // while(num1%num2 !== 0){
+        //     num1 = rand(1,12);
+        //     num2 = rand(1,12);
+        // }
 
-        while(num1%num2 !== 0){
-            num1 = rand(1, 20);
-            num2 = rand(1, 20);
-        }
-
-        equation = num1 + ' / ' + num2;
+        let dividend = solve(num1 + " * " + num2);
+        equation = dividend + ' / ' + num1;
     }
     
     localStorage.counter = parseInt(localStorage.counter) + 1;
@@ -131,6 +126,39 @@ var genFractionConvProblem = function(){
 ///////////////////////////
 //    Helper Methods     //
 ///////////////////////////
+var getLevel = function(points){
+    if(points <= 90){
+        return 1;
+    }
+    else if(points <= 100){
+        return 2;
+    }
+    else if(points <= 150){
+        return 3;
+    }
+    else if(points <= 200){
+        return 4;
+    }
+    else if(points <= 250){
+        return 5;
+    }
+    else if(points <= 350){
+        return 6;
+    }
+    else if(points <= 450){
+        return 7;
+    }
+    else if(points <= 575){
+        return 8;
+    }
+    else if(points <= 700){
+        return 9;
+    }
+    else if(points >= 850){
+        return 10;
+    }
+}
+
 var fetchEquation = function(equationType){
     let problemObj = buildEquation(equationType);
     let solution = solve(problemObj.equation);
@@ -146,7 +174,7 @@ var fetchEquation = function(equationType){
     };
 
     return returnObj;
-}
+};
 
 var solve = function(string){
     let equations = {
@@ -154,6 +182,7 @@ var solve = function(string){
         '-' : function(x, y){ return x - y },
         '*' : function(x, y){return x * y},
         '/' : function(x, y){
+                //Limit to 2 decimal places
                 let res = (x / y).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
                 while(res.charAt(0) === '0')
                 {

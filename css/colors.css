@@ -20,6 +20,15 @@ h2,h3,h4{ /* Text color */
     color: white;
 }
 
+.score-color{
+    color: #CC9B08;
+}
+
+.level-color{
+    color: #CC9B08;
+}
+
+
 /* GAME OVER SCREEN */
 .game-over-text{
     color: white;

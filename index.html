@@ -48,10 +48,13 @@
 
     <!-- Score sections -->
     <section id='current-score-contain' class='score-contain'>
-        <h4 class="eight-bit">Score: <span id='current-score'>0</span></h4>
+        <h4 class="eight-bit">Score: <span class='score-color' id='current-score'>0</span></h4>
     </section>
     <section id='all-time-score-contain' class='score-contain text-center'>
-        <h3 class="eight-bit">All time highscore: <span id='all-time-score'></span></h3>
+        <h3 class="eight-bit">All time highscore: <span class='score-color' id='all-time-score'></span></h3>
+    </section>
+    <section id='level-contain' class='text-center'>
+        <h3 class="eight-bit">You are <span class='level-color' id='level'></span></h3>
     </section>
 
     <!-- Main game container -->
@@ -63,25 +66,25 @@
                 <div class="row" data-equalizer>
                     <div class="medium-3 columns">
                         <div class='row'>
-                            <button class='button button-theme-1 medium-10 small-12 medium-centered columns' value='addition-subtraction' data-equalizer-watch>Addition & Subtraction</button>
+                            <button class='button button-theme-1 medium-10 small-12 medium-centered columns' value='addition-subtraction' id='addSub' data-equalizer-watch>Addition & Subtraction</button>
                         </div>
                     </div>
 
                     <div class="medium-3 columns">
                         <div class='row'>
-                            <button class='button button-theme-2 medium-10 small-12 medium-centered columns' value='multiplication' data-equalizer-watch>Multiplication</button>
+                            <button class='disabled button button-theme-2 medium-10 small-12 medium-centered columns' value='multiplication' id='mult' data-equalizer-watch disabled>Multiplication</button>
                         </div>
                     </div>
                     
                     <div class="medium-3 columns">
                         <div class='row'>
-                            <button class='button button-theme-2 medium-10 small-12 medium-centered columns' value='division' data-equalizer-watch>Divison</button>
+                            <button class='disabled button button-theme-2 medium-10 small-12 medium-centered columns' value='division' id='div' data-equalizer-watch disabled>Divison</button>
                         </div>
                     </div>
 
                     <div class="medium-3 columns">
                         <div class='row'>
-                            <button class='button button-theme-3 medium-10 small-12 medium-centered columns' value='fraction-conversion' data-equalizer-watch>Converting Fractions</button>
+                            <button class='disabled button button-theme-3 medium-10 small-12 medium-centered columns' value='fraction-conversion' id='convFrac' data-equalizer-watch disabled>Converting Fractions</button>
                         </div>
                     </div>
                 </div>

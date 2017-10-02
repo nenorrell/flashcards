@@ -10,6 +10,8 @@ $(document).ready(function(){
     var allTimeScore = setAllTimeScore();
     var musicSpeed = 1;
 
+    console.log(getLevel(allTimeScore));
+
     freshGameState();
 
     $('#difficulty-selection button').click(function(){ //Choose equation type & load initial equation        
@@ -58,7 +60,7 @@ $(document).ready(function(){
 
             if(currentScore > allTimeScore){
                 localStorage.highScore =  btoa(currentScore);
-                $('#final-score-title').html("New high score!!");
+                $('#final-score-title').html("New high score!");
                 $('.conf-cont').show();
             }
 
@@ -91,22 +93,30 @@ var playingState = function(){
     $('#main-game-music').get(0).currentTime = 38;
 
     $('#all-time-score-contain').fadeOut();
+    $('#level-contain').fadeOut();
     $('#current-score-contain').fadeIn();
     $('#difficulty-selection').fadeOut();
     $('#game').fadeIn();
 }
 var freshGameState = function(){
-    $('#all-time-score').html(allTimeScore);    
+    let level = getLevel(allTimeScore);
+    
+    $('#all-time-score').html(allTimeScore);
+    $('#level').html('level ' + level);
+    getAvailableProblemTypes(level);
 
     $('#game-over-music').get(0).pause();
     $('#main-game-music').get(0).currentTime = 0;
     $('#main-game-music').get(0).play();
     
-    $('.conf-cont').hide();    
+    $('.conf-cont').hide();
     $('#all-time-score-contain').fadeIn();
+    $('#level-contain').fadeIn();    
     $('#current-score-contain').fadeOut();
     $('#difficulty-selection').fadeIn();
-    $('#game-over').fadeOut();    
+    $('#game-over').fadeOut();
+
+    $('#final-score-title').html("Final score:");
 }
 
 var gameOverState = function(){
@@ -117,6 +127,20 @@ var gameOverState = function(){
     $('#current-score-contain').fadeOut();            
     $('#game').fadeOut();
     $('#game-over').fadeIn();
+}
+
+//////////////////////
+//  LEVEL HANDLING  //
+//////////////////////
+var getAvailableProblemTypes = function(level){
+    if(level >= 2){
+        $("#mult, #div").removeClass('disabled');
+        $("#mult, #div").removeAttr('disabled');
+    }
+    if(level >= 3){
+        $("#mult, #div, #convFrac").removeClass('disabled');
+        $("#mult, #div, #convFrac").removeAttr('disabled');
+    }
 }
 
 var setAllTimeScore = function(){

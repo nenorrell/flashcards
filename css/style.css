@@ -39,6 +39,13 @@ body *{
     display: none;
 }
 
+#level-contain{
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .score-contain{
     position: absolute;
     top: 10%;
@@ -79,3 +86,19 @@ body *{
     width: 10%;
     min-width: 80px;
 }
+
+.disabled{
+    background: grey !important;
+    color: #aaa !important;
+}
+
+/* Button defaults */
+/* #mult{
+    display: none;
+}
+#div{
+    display: none;
+}
+#convFrac{
+    display: none;
+} */
