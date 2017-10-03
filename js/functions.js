@@ -130,28 +130,28 @@ var getLevel = function(points){
     if(points <= 90){
         return 1;
     }
-    else if(points <= 100){
+    else if(points >= 100){
         return 2;
     }
-    else if(points <= 150){
+    else if(points >= 150){
         return 3;
     }
-    else if(points <= 200){
+    else if(points >= 200){
         return 4;
     }
-    else if(points <= 250){
+    else if(points >= 250){
         return 5;
     }
-    else if(points <= 350){
+    else if(points >= 350){
         return 6;
     }
-    else if(points <= 450){
+    else if(points >= 450){
         return 7;
     }
-    else if(points <= 575){
+    else if(points >= 575){
         return 8;
     }
-    else if(points <= 700){
+    else if(points >= 700){
         return 9;
     }
     else if(points >= 850){
