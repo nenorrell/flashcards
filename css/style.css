@@ -27,11 +27,7 @@ body *{
     z-index: 100;
 }
 
-#game-contain{
-    width: 100vw;
-    height: 100vh;
-    min-height: 350px;
-}
+/*Game screens */
 #game{
     display: none;
 }
@@ -39,25 +35,24 @@ body *{
     display: none;
 }
 
-#level-contain{
-    position: absolute;
-    top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
+/* Containers */
+#game-contain{
+    min-height: 545px;
+    width: 100vw;
+    height: 100vh;
 }
 
+#level-contain{
+    padding-bottom: 10%;
+}
 .score-contain{
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    
 }
 #current-score-contain{
     display: none;
 }
+.points-earned{
 
-#refresh{
-    z-index: 100;
 }
 
 .container-center{
@@ -70,15 +65,14 @@ body *{
     transform: translate(-50%,-50%);
 }
 
+/* General */
 .fraction, .top, .bottom {
     padding: 0 5px;    
 }
-
 .fraction {
     display: inline-block;
     text-align: center;    
 }
-
 .bottom{
     border-top: 1px solid;
     display: block;
@@ -87,18 +81,12 @@ body *{
     min-width: 80px;
 }
 
+/* Button defaults */
+#refresh{
+    z-index: 100;
+}
+
 .disabled{
     background: grey !important;
     color: #aaa !important;
 }
-
-/* Button defaults */
-/* #mult{
-    display: none;
-}
-#div{
-    display: none;
-}
-#convFrac{
-    display: none;
-} */

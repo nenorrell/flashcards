@@ -127,36 +127,16 @@ var genFractionConvProblem = function(){
 //    Helper Methods     //
 ///////////////////////////
 var getLevel = function(points){
-    if(points <= 90){
-        return 1;
+    let levelTiers = [0, 150, 250, 350, 500, 600, 750, 900, 1000, 1150];
+    let level;
+
+    for(var key in levelTiers){
+        if(points >= levelTiers[key]){
+            level = parseInt(key)+1;
+        }
     }
-    else if(points >= 100){
-        return 2;
-    }
-    else if(points >= 150){
-        return 3;
-    }
-    else if(points >= 200){
-        return 4;
-    }
-    else if(points >= 250){
-        return 5;
-    }
-    else if(points >= 350){
-        return 6;
-    }
-    else if(points >= 450){
-        return 7;
-    }
-    else if(points >= 575){
-        return 8;
-    }
-    else if(points >= 700){
-        return 9;
-    }
-    else if(points >= 850){
-        return 10;
-    }
+
+    return level;
 }
 
 var fetchEquation = function(equationType){

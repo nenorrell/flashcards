@@ -7,24 +7,40 @@ $(document).ready(function(){
     var equationType;
     var answer;
     var currentScore = 0;
-    var allTimeScore = setAllTimeScore();
+    var highScore = setHighScore();
+    var allTimePoints = setAllTimePoints();
     var musicSpeed = 1;
-
-    console.log(getLevel(allTimeScore));
+    var level = getLevel(allTimePoints);;
 
     freshGameState();
 
     $('#difficulty-selection button').click(function(){ //Choose equation type & load initial equation        
-        equationType = $(this).val();
-        
-        let flashCard = fetchEquation(equationType);    
-        equation = flashCard.equation;
-        difficulty = flashCard.difficulty;
-        solution = flashCard.solution;
-        
-        //Display game
-        playingState();
-        $('#equation').html(equation);
+        if($(this).hasClass("disabled")){
+            let btn = this;
+            let btnName = $(this).html();
+            
+            if($(this).val() == 'fraction-conversion'){
+                $(this).html('Level 3 required');
+            }
+            else{
+                $(this).html('Level ' + parseInt(level+1) + ' required');
+            }
+            setTimeout(function(){
+                $(btn).html(btnName);
+            }, 1000);
+        }
+        else{
+            equationType = $(this).val();
+            
+            let flashCard = fetchEquation(equationType);    
+            equation = flashCard.equation;
+            difficulty = flashCard.difficulty;
+            solution = flashCard.solution;
+            
+            //Display game
+            playingState();
+            $('#equation').html(equation);
+        }
     });
 
     $('#answer').keyup(function(e){
@@ -36,8 +52,21 @@ $(document).ready(function(){
     $("#submit").click(function(){ //Validate answer. If answer correct, load new equation. 
         answer = $('#answer').val();
         $('#answer').val("");
-                
-        if(answer == solution){
+        
+        if(answer.toLowerCase() == "ms.pacman"){
+            setAllTimePoints(true, parseInt(highScore)+200);
+            location.reload();
+        }
+        else if(answer.toLowerCase() == "chai"){
+            setAllTimePoints(true, parseInt(highScore)+100);
+            location.reload();
+        }
+        else if(answer.toLowerCase() == "reset"){
+            setHighScore(true, parseInt(0));
+            setAllTimePoints(true, parseInt(0));
+            location.reload();
+        }
+        else if(answer == solution){
             //Update score
             currentScore += difficulty * 10;
 
@@ -45,7 +74,7 @@ $(document).ready(function(){
             let flashCard = fetchEquation(equationType);
             equation = flashCard.equation;
             difficulty = flashCard.difficulty;
-            solution = flashCard.solution;    
+            solution = flashCard.solution;
             
             //Update Display
             $('#current-score').html(currentScore);
@@ -57,9 +86,11 @@ $(document).ready(function(){
             $('#end-equation').html(equation);
             $('#end-solution').html(solution);
             $('#end-answer').html(answer);
+            
+            setAllTimePoints(true, currentScore+parseInt(allTimePoints));
 
-            if(currentScore > allTimeScore){
-                localStorage.highScore =  btoa(currentScore);
+            if(currentScore > highScore){
+                setHighScore(true, currentScore);
                 $('#final-score-title').html("New high score!");
                 $('.conf-cont').show();
             }
@@ -71,7 +102,8 @@ $(document).ready(function(){
     });
 
     $("#refresh").click(function(){
-        allTimeScore = setAllTimeScore();
+        allTimePoints = setAllTimePoints();
+        highScore = setHighScore();
         freshGameState();
     });
     
@@ -99,9 +131,10 @@ var playingState = function(){
     $('#game').fadeIn();
 }
 var freshGameState = function(){
-    let level = getLevel(allTimeScore);
+    level = getLevel(allTimePoints);
     
-    $('#all-time-score').html(allTimeScore);
+    $('#all-time-score').html(highScore);
+    $('#all-time-points').html(allTimePoints);
     $('#level').html('level ' + level);
     getAvailableProblemTypes(level);
 
@@ -134,23 +167,43 @@ var gameOverState = function(){
 //////////////////////
 var getAvailableProblemTypes = function(level){
     if(level >= 2){
-        $("#mult, #div").removeClass('disabled');
-        $("#mult, #div").removeAttr('disabled');
+        $("#mult, #div").removeClass('disabled')
     }
     if(level >= 3){
         $("#mult, #div, #convFrac").removeClass('disabled');
-        $("#mult, #div, #convFrac").removeAttr('disabled');
     }
 }
 
-var setAllTimeScore = function(){
+var setHighScore = function(override = false, val = 0){
+    if(override === true){
+        localStorage.highScore = btoa(val);
+        return 0;
+    }
+    
     //Check if alltime highscore exists
     if(localStorage.highScore === undefined){
-        allTimeScore = 0;
+        highScore = 0;
     }
     else{
-        allTimeScore = atob(localStorage.highScore);
+        highScore = atob(localStorage.highScore);
     }
 
-    return allTimeScore;
+    return highScore;
+}
+
+var setAllTimePoints = function(override = false, val = 0){
+    if(override === true){
+        localStorage.allTimePoints = btoa(val);
+        return 0;
+    }
+    
+    //Check if alltime highscore exists
+    if(localStorage.allTimePoints === undefined){
+        allTimePoints = 0;
+    }
+    else{
+        allTimePoints = atob(localStorage.allTimePoints);
+    }
+
+    return allTimePoints;
 }
