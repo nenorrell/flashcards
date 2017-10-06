@@ -10,7 +10,7 @@ $(document).ready(function(){
     var highScore = setHighScore();
     var allTimePoints = setAllTimePoints();
     var musicSpeed = 1;
-    var level = getLevel(allTimePoints);;
+    var level = getLevel(allTimePoints);
 
     freshGameState();
 
@@ -54,11 +54,11 @@ $(document).ready(function(){
         $('#answer').val("");
         
         if(answer.toLowerCase() == "ms.pacman"){
-            setAllTimePoints(true, parseInt(highScore)+200);
+            setAllTimePoints(true, parseInt(allTimePoints)+200);
             location.reload();
         }
         else if(answer.toLowerCase() == "chai"){
-            setAllTimePoints(true, parseInt(highScore)+100);
+            setAllTimePoints(true, parseInt(allTimePoints)+100);
             location.reload();
         }
         else if(answer.toLowerCase() == "reset"){
@@ -124,9 +124,6 @@ $(document).ready(function(){
 var playingState = function(){
     $('#main-game-music').get(0).currentTime = 38;
 
-    $('#all-time-score-contain').fadeOut();
-    $('#level-contain').fadeOut();
-    $('#current-score-contain').fadeIn();
     $('#difficulty-selection').fadeOut();
     $('#game').fadeIn();
 }
@@ -143,9 +140,7 @@ var freshGameState = function(){
     $('#main-game-music').get(0).play();
     
     $('.conf-cont').hide();
-    $('#all-time-score-contain').fadeIn();
-    $('#level-contain').fadeIn();    
-    $('#current-score-contain').fadeOut();
+
     $('#difficulty-selection').fadeIn();
     $('#game-over').fadeOut();
 
@@ -156,8 +151,7 @@ var gameOverState = function(){
     $('#main-game-music').get(0).pause();
     $('#game-over-music').get(0).currentTime = 0;
     $('#game-over-music').get(0).play();
-
-    $('#current-score-contain').fadeOut();            
+              
     $('#game').fadeOut();
     $('#game-over').fadeIn();
 }

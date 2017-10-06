@@ -45,11 +45,10 @@ body *{
 #level-contain{
     padding-bottom: 10%;
 }
-.score-contain{
-    
+.current-score{
+    padding-bottom: 10%;    
 }
 #current-score-contain{
-    display: none;
 }
 .points-earned{
 
